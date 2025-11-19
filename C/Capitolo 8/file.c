@@ -17,7 +17,8 @@ int main()
         {
             printf("Inserire nome cognome eta: ");
             scanf("%s %s %d", nome, cognome, &eta);
-
+            
+            //questo non è portabile, codificato come \r\n, diverso da come viene codificato in MAC/Linux
             fprintf(f, "%s %s %d\n", nome, cognome, eta);
             // fflush(f)
             printf("Continuare? -1 per uscire:");
