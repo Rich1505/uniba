@@ -26,13 +26,14 @@
             "detail": "compiler: C:\\mingw64\\bin\\gcc.exe"
         },
         {
-            "type": "cppbuild",
+            "type": "shell",
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\mingw64\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "-std=c11",
+                "*.c",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
