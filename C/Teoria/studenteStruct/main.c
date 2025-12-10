@@ -20,7 +20,7 @@ int main()
         int eta;
         char buffer[255];
         char *nome;
-        printf("Studente %d:\n");
+        printf("Studente %zu:\n",i);
         printf("Inserisci eta: ");
         scanf("%d",&eta);
         printf("Inserisci nome:");
