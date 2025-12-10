@@ -13,7 +13,6 @@ int main()
     scanf("%d",&n);
 
     Studente *studenti[n];
-    
 
     for(size_t i = 0;i<n;i++)
     {
@@ -28,6 +27,14 @@ int main()
         studenti[i] = creaStudente(eta,buffer);
     }
 
+    for(size_t i = 0;i<n;i++)
+    {
+        printStudente(studenti[i]);
+    }
+
+    selectionSort(studenti,n);
+    puts("");
+    
     for(size_t i = 0;i<n;i++)
     {
         printStudente(studenti[i]);

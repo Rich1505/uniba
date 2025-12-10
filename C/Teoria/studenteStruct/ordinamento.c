@@ -1,13 +1,13 @@
 #include"ordinamento.h"
 
-void swap(int *a, int *b)
+void swapStudente(Studente **a, Studente **b)
 {
-    int temp = *a;
+    Studente *temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void selectionSort(int vettore[],size_t dimensione)
+void selectionSort(Studente *vettore[],size_t dimensione)
 {   
     size_t min = 0;
     for(size_t i = 0;i<dimensione-1;i++)
@@ -15,10 +15,10 @@ void selectionSort(int vettore[],size_t dimensione)
         min = i;
         for(size_t j = i+1;j<dimensione;j++)
         {
-            if(vettore[j] < vettore[min])
+            if(getEta(vettore[j]) < getEta(vettore[min]))
                 min = j;
         }
         if(min != i)
-            swap(&vettore[i],&vettore[min]);
+            swapStudente(&vettore[i],&vettore[min]);
     }
 }

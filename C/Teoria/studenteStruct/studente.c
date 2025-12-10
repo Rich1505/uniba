@@ -26,6 +26,14 @@ Studente *creaStudente(int eta, char *nome)
 
         s->eta = eta;
     }
+    else {
+        return NULL;
+    }
+
+    if(nome == NULL)
+        s->nome = NULL;
+
+    return s;
 }
 
 int getEta(const Studente *s)
@@ -33,7 +41,7 @@ int getEta(const Studente *s)
     return s->eta;
 }
 
-char *nome(const Studente *s)
+char *getNome(const Studente *s)
 {
     return s->nome;
 }

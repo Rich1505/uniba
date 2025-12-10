@@ -1,7 +1,8 @@
 #ifndef ORDINAMENTO_H
 #define ORDINAMENTO_H
 #include<stdio.h>
+#include"studente.h"
 
-void selectionSort(int[],size_t);
+void selectionSort(Studente*[],size_t);
 
 #endif
