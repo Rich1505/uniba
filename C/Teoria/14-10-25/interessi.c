@@ -8,7 +8,6 @@ int main()
     //estrae un solo byte dal buffer, quindi se inserisco caratteri non appartenenti all'ascii non lo prenderà
     while ((grade = getchar()) != EOF)
     {
-        putchar(grade);
         while(getchar() != '\n');
         switch (grade)
         {
