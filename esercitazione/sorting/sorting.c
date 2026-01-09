@@ -53,15 +53,14 @@ void selectionSort(int *arr, size_t size, bool (*op)(int,int))
 
 void insertionSort(int arr[], size_t n, bool (*op)(int,int))
 {
-    int i, key, j;
-    for (i = 1; i < n; i++) {
-        key = arr[i];
-        j = i - 1;
+    for (size_t i = 1; i < n; i++) {
+        int key = arr[i];
+        size_t j = i;
 
-        while (j >= 0 && op(arr[j],key)) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
+        while (j > 0 && arr[j-1] > key) {
+            arr[j] = arr[j - 1];
+            j--;
         }
-        arr[j + 1] = key;
+        arr[j] = key;
     }
 }
