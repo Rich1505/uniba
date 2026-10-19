@@ -1,11 +1,14 @@
 #include"Studente.h"
 #include<iostream>
 
+#define MIN_MATRICOLA 255312
+#define MAX_MATRICOLA 499999
+
 using namespace std;
 
 void Studente::set_matricola(const int matricola)
 {
-    if(matricola < 255312 || matricola > 499999)
+    if(matricola < MIN_MATRICOLA || matricola > MAX_MATRICOLA)
     {
         throw "Numero di matricola non valido";
     }
@@ -45,6 +48,9 @@ void Studente::set_eta(const int eta)
 
 void Studente::set_numeri_di_telefono(const string* numeri_di_telefono, const int n_numeri_telefono)
 {
+    if(!numeri_di_telefono)
+        return;
+
     if(n_numeri_telefono <= 0)
     {
         throw "Quantità numeri di telefono non validi";
@@ -89,11 +95,28 @@ Studente::~Studente()
         delete[] this->numeri_di_telefono;
 }
 
-Studente::Studente(Studente &copied_student) :
+Studente::Studente(const Studente &copied_student) :
     Studente(copied_student.matricola, copied_student.nome, copied_student.cognome, copied_student.eta, copied_student.numeri_di_telefono, copied_student.n_numeri_telefono)
     {
         std::cout << "Costruttore di copia" << std::endl;
     }
+
+Studente::Studente(Studente &&rhs) noexcept : 
+    matricola(rhs.matricola),
+    nome(std::move(rhs.nome)),
+    cognome(std::move(rhs.cognome)),
+    eta(rhs.eta),
+    numeri_di_telefono(rhs.numeri_di_telefono),
+    n_numeri_telefono(rhs.n_numeri_telefono)
+{
+    std::cout << "Move constructor" << std::endl;
+
+    this->numeri_di_telefono = rhs.numeri_di_telefono;
+    this->n_numeri_telefono = rhs.n_numeri_telefono;
+
+    rhs.numeri_di_telefono = nullptr;
+    rhs.n_numeri_telefono = 0;
+}
 
 int Studente::get_matricola() const
 {

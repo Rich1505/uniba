@@ -14,7 +14,8 @@ class Studente{
     public:
         Studente(int matricola, const string &nome, const string &cognome, int eta, const string *numeri_di_telefono, int n_numeri_telefono);
         ~Studente();
-        Studente(Studente &copied_student);
+        Studente(const Studente &copied_student);
+        Studente(Studente &&rhs) noexcept;
 
         void set_matricola(const int matricola);
         void set_nome(const string &nome);
