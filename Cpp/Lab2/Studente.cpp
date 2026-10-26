@@ -153,3 +153,9 @@ int Studente::get_n_numeri_telefono() const
     return this->n_numeri_telefono;
 }
 
+std::ostream &operator<<(std::ostream &out, const Studente &obj)
+{
+    out << obj.cognome;
+    return out;
+}
+

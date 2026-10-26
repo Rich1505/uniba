@@ -35,4 +35,6 @@ int main()
     b.set_numero_di_telefono("333",0);
 
     std::cout << a->get_nome() << " " << a->get_numero_di_telefono(0) << endl;
+
+    std::cout << b << " aawdwd";
 }

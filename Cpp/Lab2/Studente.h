@@ -30,4 +30,6 @@ class Studente{
         int get_eta() const;
         string get_numero_di_telefono(size_t index) const;
         int get_n_numeri_telefono() const;
+
+        friend std::ostream &operator<<(std::ostream &cout, const Studente &obj);
 };
