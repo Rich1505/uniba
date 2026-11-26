@@ -88,6 +88,15 @@ public:
         return u->first_son == nullptr;
     }
 
+    Node<T> *get_father(Node<T> *u)
+    {
+        if(u == nullptr)
+            throw "Null ptr (get_father)";
+
+        check_ownership(u);
+        return u->father;
+    }
+
     Node<T> *get_first_son(Node<T> *u)
     {
         if (u == nullptr)
@@ -186,7 +195,9 @@ public:
         }
 
         delete_subtree(u->first_son);
-        delete_subtree(u->first_son->next_brother);
+
+        if(u->first_son)
+            delete_subtree(u->first_son->next_brother);
 
         delete u;
     }
