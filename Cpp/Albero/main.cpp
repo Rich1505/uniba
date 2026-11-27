@@ -53,7 +53,7 @@ int main()
 
     // Post-visita (atteso: 5 6 2 3 7 8 4 1)
     cout << "Post-visita: ";
-    t.post_visita_print();
+    t.post_visit_print();
     cout << endl;
 
     // Test dei metodi di interrogazione
@@ -66,7 +66,7 @@ int main()
 
     // Post-visita dopo la cancellazione (atteso: 5 6 2 3 1)
     cout << "Post-visita dopo delete_subtree(4): ";
-    t.post_visita_print();
+    t.post_visit_print();
     cout << endl;
 
     cout << "Albero vuoto? " << t.empty_tree() << endl;
