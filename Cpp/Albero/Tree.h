@@ -52,8 +52,28 @@ private:
         set_subtree_owner(u->next_brother);
     }
 
+    void destroy_nodes(Node<T> *node)
+    {
+        if (node == nullptr)
+            return;
+
+        Node<T> *child = node->first_son;
+        while (child != nullptr)
+        {
+            Node<T> *next = child->next_brother;
+            destroy_nodes(child);
+            child = next;
+        }
+        delete node;
+    }
+
 public:
     Tree() : root(nullptr) {};
+
+    ~Tree()
+    {
+        destroy_nodes(root);
+    }
 
     bool empty_tree()
     {
@@ -64,8 +84,7 @@ public:
     {
         if(root != nullptr)
         {
-            root->set_value(value);
-            return;
+            throw "La radice e' gia' presente nell'albero"
         }
 
         Node<T> *new_root = new Node<T>(value);
@@ -131,6 +150,9 @@ public:
 
         check_ownership(u);
 
+        if (subtree->empty_tree())
+            return;
+
         Node<T> *subtree_root = subtree->get_root();
         Node<T> *old_first_son = u->first_son;
         u->first_son = subtree_root;
@@ -139,7 +161,7 @@ public:
         subtree_root->father = u;
         set_subtree_owner(subtree_root);
 
-        delete subtree;
+        subtree->root = nullptr;
     }
 
     void insert_subtree(Node<T> *u, Tree<T> *subtree)
@@ -154,6 +176,9 @@ public:
             throw "Impossibile aggiungere fratelli alla radice";
         }
 
+        if (subtree->empty_tree())
+            return;
+
         Node<T> *subtree_root = subtree->get_root();
         Node<T> *old_next_brother = u->next_brother;
         u->next_brother = subtree_root;
@@ -161,7 +186,7 @@ public:
         subtree_root->father = u->father;
         set_subtree_owner(subtree_root);
 
-        delete subtree;
+        subtree->root = nullptr;
     }
 
     void delete_subtree(Node<T> *u)
@@ -193,13 +218,11 @@ public:
                 }
             }
         }
+        
+        if (u == this->root)
+            this->root = nullptr;
 
-        delete_subtree(u->first_son);
-
-        if(u->first_son)
-            delete_subtree(u->first_son->next_brother);
-
-        delete u;
+        destroy_nodes(u);
     }
 };
 
