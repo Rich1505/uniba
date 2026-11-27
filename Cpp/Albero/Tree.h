@@ -1,5 +1,6 @@
 #ifndef TREE_H
 #define TREE_H
+#include<iostream>
 
 template <typename T>
 class Tree;
@@ -14,6 +15,18 @@ private:
     Node *next_brother;
     Tree<T> *owner;
     friend class Tree<T>;
+
+    void post_visita_print()
+    {
+        if(first_son != nullptr)
+            first_son->post_visita_print();
+
+        std::cout << value << " ";
+
+        if(next_brother != nullptr)
+            next_brother->post_visita_print();
+
+    }
 
 public:
     Node() : father(nullptr), first_son(nullptr), next_brother(nullptr), owner(nullptr) {};
@@ -84,7 +97,7 @@ public:
     {
         if(root != nullptr)
         {
-            throw "La radice e' gia' presente nell'albero"
+            throw "La radice e' gia' presente nell'albero";
         }
 
         Node<T> *new_root = new Node<T>(value);
@@ -223,6 +236,12 @@ public:
             this->root = nullptr;
 
         destroy_nodes(u);
+    }
+
+    void post_visita_print()
+    {
+        if(root != nullptr)
+            root->post_visita_print();
     }
 };
 
